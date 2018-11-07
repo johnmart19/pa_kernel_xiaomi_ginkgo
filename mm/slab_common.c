@@ -699,7 +699,7 @@ void slab_deactivate_memcg_cache_rcu_sched(struct kmem_cache *s,
 	css_get(&s->memcg_params.memcg->css);
 
 	s->memcg_params.deact_fn = deact_fn;
-	call_rcu_sched(&s->memcg_params.deact_rcu_head, kmemcg_deactivate_rcufn);
+	call_rcu(&s->memcg_params.deact_rcu_head, kmemcg_deactivate_rcufn);
 }
 
 void memcg_deactivate_kmem_caches(struct mem_cgroup *memcg)
@@ -805,6 +805,27 @@ static int shutdown_memcg_caches(struct kmem_cache *s)
 	if (!list_empty(&s->memcg_params.children))
 		return -EBUSY;
 	return 0;
+}
+
+static void flush_memcg_workqueue(struct kmem_cache *s)
+{
+	mutex_lock(&slab_mutex);
+	s->memcg_params.dying = true;
+	mutex_unlock(&slab_mutex);
+
+	/*
+	 * SLUB deactivates the kmem_caches through call_rcu. Make
+	 * sure all registered rcu callbacks have been invoked.
+	 */
+	if (IS_ENABLED(CONFIG_SLUB))
+		rcu_barrier();
+
+	/*
+	 * SLAB and SLUB create memcg kmem_caches through workqueue and SLUB
+	 * deactivates the memcg kmem_caches through workqueue. Make sure all
+	 * previous workitems on workqueue are processed.
+	 */
+	flush_workqueue(memcg_kmem_cache_wq);
 }
 #else
 static inline int shutdown_memcg_caches(struct kmem_cache *s)
