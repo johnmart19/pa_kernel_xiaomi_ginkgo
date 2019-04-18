@@ -9398,7 +9398,7 @@ M:	Josef Bacik <jbacik@fb.com>
 S:	Maintained
 L:	linux-block@vger.kernel.org
 L:	nbd@other.debian.org
-F:	Documentation/blockdev/nbd.txt
+F:	Documentation/blockdev/nbd.rst
 F:	drivers/block/nbd.c
 F:	include/uapi/linux/nbd.h
 
@@ -10235,7 +10235,7 @@ PARIDE DRIVERS FOR PARALLEL PORT IDE DEVICES
 M:	Tim Waugh <tim@cyberelk.net>
 L:	linux-parport@lists.infradead.org (subscribers-only)
 S:	Maintained
-F:	Documentation/blockdev/paride.txt
+F:	Documentation/blockdev/paride.rst
 F:	drivers/block/paride/
 
 PARISC ARCHITECTURE
@@ -11349,7 +11349,7 @@ F:	drivers/net/wireless/ralink/rt2x00/
 RAMDISK RAM BLOCK DEVICE DRIVER
 M:	Jens Axboe <axboe@kernel.dk>
 S:	Maintained
-F:	Documentation/blockdev/ramdisk.txt
+F:	Documentation/blockdev/ramdisk.rst
 F:	drivers/block/brd.c
 
 RANDOM NUMBER DRIVER
@@ -14943,7 +14943,7 @@ R:	Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
 L:	linux-kernel@vger.kernel.org
 S:	Maintained
 F:	drivers/block/zram/
-F:	Documentation/blockdev/zram.txt
+F:	Documentation/blockdev/zram.rst
 
 ZS DECSTATION Z85C30 SERIAL DRIVER
 M:	"Maciej W. Rozycki" <macro@linux-mips.org>
