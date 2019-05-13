@@ -196,8 +196,8 @@ static inline int cpu_to_mem(int cpu)
 #ifndef topology_core_cpumask
 #define topology_core_cpumask(cpu)		cpumask_of(cpu)
 #endif
-#ifndef topology_possible_sibling_cpumask
-#define topology_possible_sibling_cpumask(cpu)	cpumask_of(cpu)
+#ifndef topology_die_cpumask
+#define topology_die_cpumask(cpu)		cpumask_of(cpu)
 #endif
 
 #ifdef CONFIG_SCHED_SMT
