@@ -44,12 +44,9 @@
 #define KASAN_ALLOCA_REDZONE_SIZE	32
 
 /*
- * alloca redzone shadow values
+ * Stack frame marker (compiler ABI).
  */
-#define KASAN_ALLOCA_LEFT	0xCA
-#define KASAN_ALLOCA_RIGHT	0xCB
-
-#define KASAN_ALLOCA_REDZONE_SIZE	32
+#define KASAN_CURRENT_STACK_FRAME_MAGIC 0x41B58AB3
 
 /* Don't break randconfig/all*config builds */
 #ifndef KASAN_ABI_VERSION
