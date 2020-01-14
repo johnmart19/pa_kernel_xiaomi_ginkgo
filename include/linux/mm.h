@@ -2675,12 +2675,29 @@ static inline bool want_init_on_free(void)
 }
 
 #ifdef CONFIG_DEBUG_PAGEALLOC
-extern bool _debug_pagealloc_enabled;
-extern void __kernel_map_pages(struct page *page, int numpages, int enable);
+extern void init_debug_pagealloc(void);
+#else
+static inline void init_debug_pagealloc(void) {}
+#endif
+extern bool _debug_pagealloc_enabled_early;
+DECLARE_STATIC_KEY_FALSE(_debug_pagealloc_enabled);
 
 static inline bool debug_pagealloc_enabled(void)
 {
-	return _debug_pagealloc_enabled;
+	return IS_ENABLED(CONFIG_DEBUG_PAGEALLOC) &&
+		_debug_pagealloc_enabled_early;
+}
+
+/*
+ * For use in fast paths after init_debug_pagealloc() has run, or when a
+ * false negative result is not harmful when called too early.
+ */
+static inline bool debug_pagealloc_enabled_static(void)
+{
+	if (!IS_ENABLED(CONFIG_DEBUG_PAGEALLOC))
+		return false;
+
+	return static_branch_unlikely(&_debug_pagealloc_enabled);
 }
 
 static inline void
@@ -2689,7 +2706,7 @@ kernel_map_pages(struct page *page, int numpages, int enable)
 	if (!debug_pagealloc_enabled())
 		return;
 
-	__kernel_map_pages(page, numpages, enable);
+	kernel_map_pages(page, numpages, enable);
 }
 #ifdef CONFIG_HIBERNATION
 extern bool kernel_page_present(struct page *page);
@@ -2894,7 +2911,5 @@ struct reclaim_param {
 };
 extern struct reclaim_param reclaim_task_anon(struct task_struct *task,
 		int nr_to_reclaim);
-#endif
-
 #endif /* __KERNEL__ */
 #endif /* _LINUX_MM_H */
