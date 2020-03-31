@@ -42,7 +42,5 @@ obj-$(CONFIG_ZRAM) += zram/
 skd-y		:= skd_main.o
 swim_mod-y	:= swim.o swim_asm.o
 
-obj-$(CONFIG_VSERVICES_BLOCK_SERVER)     += vs_block_server.o
-CFLAGS_vs_block_server.o += -Werror
-obj-$(CONFIG_VSERVICES_BLOCK_CLIENT)     += vs_block_client.o
-CFLAGS_vs_block_client.o += -Werror
+obj-$(CONFIG_NEURON_APP_BLOCK_CLIENT) += neuron_block_client.o
+obj-$(CONFIG_NEURON_APP_BLOCK_SERVER) += neuron_block_server.o
