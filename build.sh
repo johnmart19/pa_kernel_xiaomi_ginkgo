@@ -1,6 +1,6 @@
 export PATH="$HOME/proton/bin:$PATH"
 SECONDS=0
-ZIPNAME="QuicksilveRV2-ginkgo-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="Quicksilver-R-johnmart19-$(date '+%Y%m%d-%H%M').zip"
 
 if ! [ -d "$HOME/proton" ]; then
 echo "Proton clang not found! Cloning..."
