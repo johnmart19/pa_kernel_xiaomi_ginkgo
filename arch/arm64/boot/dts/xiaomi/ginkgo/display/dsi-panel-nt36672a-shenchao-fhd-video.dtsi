@@ -17,7 +17,6 @@
 			"nt36672a video mode dsi shenchao panel";
 		qcom,mdss-dsi-panel-type = "dsi_video_mode";
 
-		qcom,mdss-dsi-panel-jitter = <0x8 0xa>;
 		qcom,mdss-dsi-virtual-channel-id = <0>;
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-h-left-border = <0>;
@@ -48,10 +47,6 @@
 		qcom,mdss-pan-physical-width-dimension = <67>;
 		qcom,mdss-pan-physical-height-dimension = <145>;
 
-		qcom,ulps-enabled;
-		qcom,suspend-ulps-enabled;
-		qcom,panel-allow-phy-poweroff;
-
 		qcom,mdss-dsi-display-timings {
 			timing@0 {
 				qcom,mdss-dsi-panel-width = <1080>;
@@ -63,7 +58,7 @@
 				qcom,mdss-dsi-v-back-porch = <8>;
 				qcom,mdss-dsi-v-front-porch = <10>;
 				qcom,mdss-dsi-v-pulse-width = <3>;
-				qcom,mdss-dsi-panel-framerate = <68>;
+				qcom,mdss-dsi-panel-framerate = <60>;
 				qcom,mdss-dsi-on-command = [
 			15 01 00 00 00 00 02 FF 23
 	          	15 00 00 00 00 00 02 FB 01
