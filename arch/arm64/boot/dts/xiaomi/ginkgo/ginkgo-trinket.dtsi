@@ -13,6 +13,7 @@
 #include "ginkgo-trinket-thermal.dtsi"
 #include "ginkgo-trinket-touchscreen.dtsi"
 #include "ginkgo-trinket-usb.dtsi"
+#include "ginkgo-touchpad.dtsi"
 
 &firmware {
 	android {
