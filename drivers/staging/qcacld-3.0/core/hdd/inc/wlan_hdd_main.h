@@ -1702,6 +1702,7 @@ struct hdd_adapter_ops_history {
  * @rx_aggregation: rx aggregation enable or disable state
  * @gro_force_flush: gro force flushed indication flag
  * @adapter_ops_wq: High priority workqueue for handling adapter operations
+ * @is_dual_mac_cfg_updated: indicate whether dual mac cfg has been updated
  */
 struct hdd_context {
 	struct wlan_objmgr_psoc *psoc;
@@ -1777,7 +1778,6 @@ struct hdd_context {
 	/** P2P Device MAC Address for the adapter  */
 	struct qdf_mac_addr p2p_device_address;
 
-	qdf_wake_lock_t rx_wake_lock;
 	qdf_wake_lock_t sap_wake_lock;
 
 	/* Flag keeps track of wiphy suspend/resume */
@@ -2036,6 +2036,7 @@ struct hdd_context {
 
 	qdf_workqueue_t *adapter_ops_wq;
 	struct hdd_adapter_ops_history adapter_ops_history;
+	bool is_dual_mac_cfg_updated;
 };
 
 /**
